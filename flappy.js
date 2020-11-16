@@ -16,7 +16,7 @@ function loop(){
   );
 
 
-  requestAnimationFrame();
+  requestAnimationFrame(loop);
 }
 
 loop();
