@@ -13,18 +13,19 @@ const flappyBird ={
   altura: 24,
   x: 10,
   y: 50,
+  desenho(){
+    contexto.drawImage(
+      sprites,
+      flappyBird.spriteX, flappyBird.spriteY, //posição em x e y
+      flappyBird.largura, flappyBird.altura, //recorte do sprite
+      flappyBird.x, flappyBird.y, 
+      flappyBird.largura, flappyBird.altura,
+    );
+  }
 }
 
 function loop(){
-  contexto.drawImage(
-    sprites,
-    flappyBird.spriteX, flappyBird.spriteY, //posição em x e y
-    flappyBird.largura, flappyBird.altura, //recorte do sprite
-    flappyBird.x, flappyBird.y, 
-    flappyBird.largura, flappyBird.altura,
-  );
-
-
+  flappyBird.desenho();
   requestAnimationFrame(loop);
 }
 
