@@ -6,13 +6,22 @@ sprites.src = 'sprites.png';
 const canvas = document.querySelector('canvas');
 const contexto = canvas.getContext('2d');
 
+const flappyBird ={
+  spriteX: 0,
+  spriteY: 0,
+  largura: 33,
+  altura: 24,
+  x: 10,
+  y: 50,
+}
+
 function loop(){
   contexto.drawImage(
     sprites,
-    0, 0, //posição em x e y
-    33, 24, //recorte do sprite
-    10, 50, 
-    33, 24
+    flappyBird.spriteX, flappyBird.spriteY, //posição em x e y
+    flappyBird.largura, flappyBird.altura, //recorte do sprite
+    flappyBird.x, flappyBird.y, 
+    flappyBird.largura, flappyBird.altura,
   );
 
 
