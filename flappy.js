@@ -6,6 +6,45 @@ sprites.src = 'sprites.png';
 const canvas = document.querySelector('canvas');
 const contexto = canvas.getContext('2d');
 
+const planoDeFundo = {
+  spriteX: 390,
+  spriteY: 0,
+  largura: 275,
+  altura: 204,
+  x: 0,
+  y: canvas.height = 204,
+  desenho(){
+  
+  }
+};
+
+//código para desenhar o chão
+const chao = {
+  spriteX: 0,
+  spriteY: 610,
+  largura: 224,
+  altura:112,
+  x: 0,
+  y: canvas.height - 112,
+  desenho() {
+    contexto.drawImage(
+      sprites,
+      chao.spriteX, chao.spriteY,
+      chao.largura, chao.altura,
+      chao.x, chao.y,
+      chao.largura, chao.altura,
+    );
+    
+    contexto.drawImage( //redesenha o chão, porém completa a lacuna do lado direito
+      sprites,
+      chao.spriteX, chao.spriteY,
+      chao.largura, chao.altura,
+      (chao.x + chao.largura), chao.y,
+      chao.largura, chao.altura,
+    );
+  },
+};
+
 const flappyBird ={
   spriteX: 0,
   spriteY: 0,
@@ -26,6 +65,7 @@ const flappyBird ={
 
 function loop(){
   flappyBird.desenho();
+  chao.desenho();
   requestAnimationFrame(loop);
 }
 
