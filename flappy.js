@@ -6,6 +6,7 @@ sprites.src = 'sprites.png';
 const canvas = document.querySelector('canvas');
 const contexto = canvas.getContext('2d');
 
+//código para cenário
 const planoDeFundo = {
   spriteX: 390,
   spriteY: 0,
@@ -14,7 +15,23 @@ const planoDeFundo = {
   x: 0,
   y: canvas.height = 204,
   desenho(){
-  
+    contexto.fillStyle = '#70c5ce';
+    contexto.fillRect(0,0, canvas.width, canvas.height);
+    
+    contexto.drawImage(
+     sprites,
+      planoDeFundo.spriteX, planoDeFundo.spriteY,
+      planoDeFundo.largura, planoDeFundo.altura,
+      planoDeFundo.x, planoDeFundo.y,
+      planoDeFundo.largura, planoDeFundo.altura,
+    );
+    contexto.drawImage(
+      sprites,
+      planoDeFundo.spriteX, planoDeFundo.spriteY,
+      planoDeFundo.largura, planoDeFundo.altura,
+      (planoDeFundo.x + planoDeFundo.largura), planoDeFundo.y,
+      planoDeFundo.largura, planoDeFundo.altura,
+    );
   }
 };
 
