@@ -106,6 +106,9 @@ function loop() {
   planoDeFundo.desenho();
   chao.desenho();
   flappyBird.desenho();
+
+  flappyBird.y = flappyBird.y + 1;
+
   requestAnimationFrame(loop);
 }
 
