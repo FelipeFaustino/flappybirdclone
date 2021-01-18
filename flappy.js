@@ -87,13 +87,19 @@ const flappyBird = {
   altura: 24,
   x: 10,
   y: 50,
+  gravidade: 0.25,
+  velocidade: 0,
+  atualiza() {
+    flappyBird.velocidade = flappyBird.velocidade + flappyBird.gravidade;
+    flappyBird.y = flappyBird.y + flappyBird.velocidade;
+  },
   desenho() {
     contexto.drawImage(
       sprites,
       flappyBird.spriteX,
-      flappyBird.spriteY, //posição em x e y
+      flappyBird.spriteY,
       flappyBird.largura,
-      flappyBird.altura, //recorte do sprite
+      flappyBird.altura,
       flappyBird.x,
       flappyBird.y,
       flappyBird.largura,
@@ -103,11 +109,11 @@ const flappyBird = {
 };
 
 function loop() {
+  flappyBird.atualiza();
+
   planoDeFundo.desenho();
   chao.desenho();
   flappyBird.desenho();
-
-  flappyBird.y = flappyBird.y + 1;
 
   requestAnimationFrame(loop);
 }
