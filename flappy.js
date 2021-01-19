@@ -108,14 +108,66 @@ const flappyBird = {
   }
 };
 
-function loop() {
-  flappyBird.atualiza();
+const menu = {
+  sX: 134,
+  sY: 0,
+  w: 174,
+  h: 152,
+  x: canvas.width / 2 - 174 / 2,
+  y: 50,
+  desenho() {
+    contexto.drawImage(
+      sprites,
+      menu.sX,
+      menu.sY,
+      menu.w,
+      menu.h,
+      menu.x,
+      menu.y,
+      menu.w,
+      menu.h
+    );
+  }
+};
 
-  planoDeFundo.desenho();
-  chao.desenho();
-  flappyBird.desenho();
+//
+// telas
+//
+let telaAtiva = {};
+function mudaTela(novaTela) {
+  telaAtiva = novaTela;
+}
+
+const telas = {
+  inicio: {
+    desenho() {
+      planoDeFundo.desenho();
+      chao.desenho();
+      flappyBird.desenho();
+      menu.desenho();
+    },
+    atualiza() {}
+  }
+};
+
+telas.jogo = {
+  desenho() {
+    planoDeFundo.desenho();
+    chao.desenho();
+    flappyBird.desenho();
+  },
+  atualiza() {
+    flappyBird.atualiza();
+  }
+};
+
+function loop() {
+  telaAtiva.desenho();
+  telaAtiva.atualiza();
 
   requestAnimationFrame(loop);
 }
+
+mudaTela(telas.inicio);
 
 loop();
