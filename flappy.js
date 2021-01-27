@@ -80,6 +80,17 @@ const chao = {
   }
 };
 
+function colisao(flappyBird, chao) {
+  const flappyBirdY = flappyBird.y + flappyBird.altura;
+  const chaoY = chao.y;
+
+  if (flappyBirdY >= chaoY) {
+    return true;
+  }
+
+  return false;
+}
+
 const flappyBird = {
   spriteX: 0,
   spriteY: 0,
@@ -87,9 +98,21 @@ const flappyBird = {
   altura: 24,
   x: 10,
   y: 50,
+  pulo: 4.6,
+  pula() {
+    console.log("devo pular");
+    console.log("[antes]", flappyBird.velocidade); //demonstração
+    flappyBird.velocidade = -flappyBird.pulo;
+    console.log("[depois]", flappyBird.velocidade); //demonstração
+  },
   gravidade: 0.25,
   velocidade: 0,
   atualiza() {
+    if (colisao(flappyBird, chao)) {
+      console.log("fez colisao");
+      return;
+    }
+
     flappyBird.velocidade = flappyBird.velocidade + flappyBird.gravidade;
     flappyBird.y = flappyBird.y + flappyBird.velocidade;
   },
@@ -158,6 +181,9 @@ telas.jogo = {
     planoDeFundo.desenho();
     chao.desenho();
     flappyBird.desenho();
+  },
+  click() {
+    flappyBird.pula();
   },
   atualiza() {
     flappyBird.atualiza();
